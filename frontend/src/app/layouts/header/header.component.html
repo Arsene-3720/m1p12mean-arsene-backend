@@ -1,0 +1,38 @@
+<header>
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <i class="fas fa-car"></i>
+          <span>AutoPro</span>
+        </div>
+        <nav>
+          <div class="mobile-menu">
+            <i class="fas fa-bars"></i>
+          </div>
+          <ul>
+            <li><a routerLink="/"><i class="fas fa-home"></i> Accueil</a></li>
+            <li><a routerLink="/services"><i class="fab fa-servicestack"></i> Services</a></li>
+            <li *ngIf="isClientConnected; else notConnected">
+              <a routerLink="/rendez-vous"><i class="fas fa-calendar-alt"></i> Rendez-vous</a>
+            </li>
+            <ng-template #notConnected>
+              <li><a routerLink="/connexion"><i class="fas fa-calendar-alt"></i> Rendez-vous</a></li>
+            </ng-template>
+            <li><a routerLink="/vehicules"><i class="fas fa-car"></i> Véhicules</a></li>
+            <li><a routerLink="/factures"><i class="fas fa-file-invoice-dollar"></i> Factures</a></li>
+            <li><a routerLink="/clients"><i class="fas fa-users"></i> Clients</a></li>
+          </ul>
+        </nav>
+        <div class="user-actions">
+          <ng-container *ngIf="isClientConnected; else notLoggedIn">
+            <a routerLink="/profil" class="btn btn-primary"><i class="fas fa-user"></i> Mon compte</a>
+            <a (click)="logout()" class="btn btn-secondary"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+          </ng-container>
+          <ng-template #notLoggedIn>
+            <a routerLink="/connexion" class="btn btn-secondary">Se connecter</a>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </header>
+  

@@ -1,0 +1,350 @@
+<main>
+
+    
+
+    <section class="hero">
+        <div class="container">
+          <div class="hero-content">
+            <h1>Gestion d'atelier automobile simplifiée</h1>
+            <p>Une solution complète pour la gestion de votre atelier automobile - rendez-vous, clients, véhicules, factures et bien plus encore.</p>
+            <button class="btn btn-primary btn-lg">Commencer maintenant</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="features-section">
+        <div class="container">
+          <div class="section-title">
+            <h2>Nos Services</h2>
+          </div>
+      
+          <div class="features-grid">
+            <div *ngFor="let service of listeService" class="feature-card">
+              <a [routerLink]="'/detail/' + service._id">
+                <div class="feature-icon">
+                  <img *ngIf="service.image" [src]="service.image" [alt]="service.nom" style="max-width: 100px; max-height: 100px;">
+                  <i *ngIf="!service.image" class="fas fa-wrench"></i>
+                </div>
+                <div class="feature-content">
+                  <h3>{{ service.nom }}</h3>
+                  <p>{{ service.description }}</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+
+      <section id="pourquoi">
+        <div class="container">
+          <h2>Pourquoi nous choisir ?</h2>
+          <div class="pourquoi-grid">
+            <div class="pourquoi-item">
+              <i class="fas fa-users"></i>
+              <h3>Équipe qualifiée</h3>
+              <p>Mécaniciens expérimentés et passionnés.</p>
+            </div>
+            <div class="pourquoi-item">
+              <i class="fas fa-tools"></i>
+              <h3>Équipement de pointe</h3>
+              <p>Outils et technologies modernes.</p>
+            </div>
+            <div class="pourquoi-item">
+              <i class="fas fa-tags"></i>
+              <h3>Tarifs compétitifs</h3>
+              <p>Des prix justes et transparents.</p>
+            </div>
+            <div class="pourquoi-item">
+              <i class="fas fa-headset"></i>
+              <h3>Service client personnalisé</h3>
+              <p>Un accompagnement sur mesure.</p>
+            </div>
+            <div class="pourquoi-item">
+              <i class="fas fa-shield-alt"></i>
+              <h3>Garantie sur les réparations</h3>
+              <p>La tranquillité d'esprit garantie.</p>
+            </div>
+          </div>
+          <div id="temoignages">
+            <h2>Témoignages</h2>
+            <div class="temoignages-grid">
+              <div class="temoignage">
+                <p>« Un service impeccable et une équipe très professionnelle. Je recommande vivement ce garage. »</p>
+                <p class="auteur">- Jean Dupont</p>
+              </div>
+              <div class="temoignage">
+                <p>« Réparation rapide et efficace. Je suis très satisfait du résultat. »</p>
+                <p class="auteur">- Marie Leblanc</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="client-area" style="display: none;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Espace Client</h2>
+                <p>Bienvenue dans votre espace client. Gérez vos véhicules, rendez-vous et factures en toute simplicité.</p>
+            </div>
+            
+            <div class="tabs">
+                <div class="tab active" data-tab="vehicles">Mes Véhicules</div>
+                <div class="tab" data-tab="appointments">Mes Rendez-vous</div>
+                <div class="tab" data-tab="invoices">Mes Factures</div>
+                <div class="tab" data-tab="profile">Mon Profil</div>
+            </div>
+            
+            <div class="tab-content" id="vehicles-tab">
+                <div class="d-flex justify-between align-center mb-3">
+                    <h3>Mes Véhicules</h3>
+                    <button class="btn btn-primary"><i class="fas fa-plus"></i> Ajouter un véhicule</button>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-car"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h3>Renault Clio</h3>
+                            <p><strong>Immatriculation:</strong> AB-123-CD</p>
+                            <p><strong>Année:</strong> 2018</p>
+                            <p><strong>Kilométrage:</strong> 52 000 km</p>
+                            <div class="d-flex justify-between mt-3">
+                                <button class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Modifier</button>
+                                <button class="btn btn-sm btn-primary"><i class="fas fa-history"></i> Historique</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-car"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h3>Peugeot 3008</h3>
+                            <p><strong>Immatriculation:</strong> EF-456-GH</p>
+                            <p><strong>Année:</strong> 2020</p>
+                            <p><strong>Kilométrage:</strong> 28 500 km</p>
+                            <div class="d-flex justify-between mt-3">
+                                <button class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Modifier</button>
+                                <button class="btn btn-sm btn-primary"><i class="fas fa-history"></i> Historique</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="appointments-tab" style="display: none;">
+                <div class="d-flex justify-between align-center mb-3">
+                    <h3>Mes Rendez-vous</h3>
+                    <button class="btn btn-primary"><i class="fas fa-plus"></i> Prendre rendez-vous</button>
+                </div>
+                
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Véhicule</th>
+                                <th>Date</th>
+                                <th>Motif</th>
+                                <th>Mécanicien</th>
+                                <th>Statut</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Renault Clio</td>
+                                <td>14/03/2025 14:30</td>
+                                <td>Révision</td>
+                                <td>Martin Alain</td>
+                                <td><span class="status status-confirmed">Confirmé</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></button>
+                                    <button class="btn btn-sm btn-danger"><i class="fas fa-times"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Peugeot 3008</td>
+                                <td>28/03/2025 10:00</td>
+                                <td>Changement des freins</td>
+                                <td>Non assigné</td>
+                                <td><span class="status status-pending">En attente</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></button>
+                                    <button class="btn btn-sm btn-danger"><i class="fas fa-times"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h3 class="mt-4 mb-3">Historique des rendez-vous</h3>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Véhicule</th>
+                                <th>Date</th>
+                                <th>Motif</th>
+                                <th>Mécanicien</th>
+                                <th>Statut</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Renault Clio</td>
+                                <td>14/02/2025 11:00</td>
+                                <td>Changement de pneus</td>
+                                <td>Dupont Eric</td>
+                                <td><span class="status status-completed">Terminé</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Peugeot 3008</td>
+                                <td>05/01/2025 09:30</td>
+                                <td>Vidange</td>
+                                <td>Martin Alain</td>
+                                <td><span class="status status-completed">Terminé</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="invoices-tab" style="display: none;">
+                <h3 class="mb-3">Mes Factures</h3>
+                
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>N° Facture</th>
+                                <th>Date</th>
+                                <th>Véhicule</th>
+                                <th>Montant</th>
+                                <th>Statut</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>F-2025-0125</td>
+                                <td>14/02/2025</td>
+                                <td>Renault Clio</td>
+                                <td>245,80 €</td>
+                                <td><span class="status status-completed">Payée</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary"><i class="fas fa-download"></i></button>
+                                    <button class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>F-2025-0089</td>
+                                <td>05/01/2025</td>
+                                <td>Peugeot 3008</td>
+                                <td>120,00 €</td>
+                                <td><span class="status status-completed">Payée</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary"><i class="fas fa-download"></i></button>
+                                    <button class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>F-2024-0356</td>
+                                <td>12/12/2024</td>
+                                <td>Renault Clio</td>
+                                <td>540,50 €</td>
+                                <td><span class="status status-completed">Payée</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary"><i class="fas fa-download"></i></button>
+                                    <button class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="profile-tab" style="display: none;">
+                <div class="profile-header">
+                    <div class="profile-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="profile-info">
+                        <h2>Dupont Jean</h2>
+                        <div class="profile-meta">
+                            <span><i class="fas fa-envelope"></i> jean.dupont&#64;email.com</span>
+                            <span><i class="fas fa-phone"></i> 06 12 34 56 78</span>
+                            <span><i class="fas fa-map-marker-alt"></i> 123 rue de Paris, 75001 Paris</span>
+                            <span><i class="fas fa-car"></i> 2 véhicules</span>
+                        </div>
+                        <div class="profile-actions mt-2">
+                            <button class="btn btn-warning"><i class="fas fa-edit"></i> Modifier le profil</button>
+                            <button class="btn btn-secondary"><i class="fas fa-key"></i> Changer le mot de passe</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tabs profile-tabs">
+                    <div class="tab active" data-tab="info">Informations</div>
+                    <div class="tab" data-tab="password">Mot de passe</div>
+                    <div class="tab" data-tab="notifications">Notifications</div>
+                </div>
+                
+                <div class="tab-content profile-content" id="info-tab">
+                    <form id="profileForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">Prénom</label>
+                                <input type="text" id="firstName" value="Jean">
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Nom</label>
+                                <input type="text" id="lastName" value="Dupont">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" value="jean.dupont@email.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Téléphone</label>
+                                <input type="tel" id="phone" value="06 12 34 56 78">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Adresse</label>
+                            <input type="text" id="address" value="123 rue de Paris">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="city">Ville</label>
+                                <input type="text" id="city" value="Paris">
+                            </div>
+                            <div class="form-group">
+                                <label for="zipCode">Code postal</label>
+                                <input type="text" id="zipCode" value="75001">
+                            </div>
+                        </div>
+                        <div class="form-group text-right">
+                            <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+      
+</main>
+  

@@ -1,0 +1,581 @@
+
+/* Variables globales */
+:root {
+    --primary: #3498db;
+    --primary-dark: #2980b9;
+    --secondary: #2ecc71;
+    --light-bg: #f9f9f9;
+    --border: #e0e0e0;
+    --text: #333;
+    --text-light: #777;
+    --success: #27ae60;
+    --error: #e74c3c;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+/* Styles de base */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f2f5;
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    background: white;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transform: translateY(20px);
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards;
+}
+
+@keyframes fadeIn {
+    to {
+    opacity: 1;
+    transform: translateY(0);
+    }
+}
+
+/* En-tête */
+header {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    padding: 30px 40px;
+    text-align: center;
+    border-radius: 10px 10px 0 0;
+}
+
+header h1 {
+    margin: 0 0 10px;
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.subtitle {
+    font-size: 16px;
+    opacity: 0.9;
+    margin: 0;
+}
+
+/* Sections du formulaire */
+.form-section {
+    padding: 25px 40px;
+    border-bottom: 1px solid var(--border);
+    transition: var(--transition);
+}
+
+.form-section:last-child {
+    border-bottom: none;
+}
+
+.form-section h2 {
+    color: var(--primary);
+    margin: 0 0 20px;
+    font-size: 22px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.form-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: var(--secondary);
+    border-radius: 3px;
+}
+
+.form-content {
+    transition: var(--transition);
+}
+
+/* Style des champs */
+form p {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--text);
+    transition: var(--transition);
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 15px;
+    transition: var(--transition);
+    outline: none;
+    box-sizing: border-box;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+/* Style des véhicules */
+.vehicles-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.vehicle-form {
+    background-color: var(--light-bg);
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 3px solid var(--secondary);
+    transition: var(--transition);
+}
+
+.vehicle-form h3 {
+    margin-top: 0;
+    font-size: 18px;
+    color: var(--primary-dark);
+}
+
+/* Footer du formulaire */
+.form-footer {
+    padding: 25px 40px;
+    background-color: var(--light-bg);
+    text-align: center;
+}
+
+.btn-submit {
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    color: white;
+    border: none;
+    padding: 14px 30px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(46, 204, 113, 0.2);
+}
+
+.btn-submit:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(46, 204, 113, 0.3);
+}
+
+/* Animation pour l'ajout de véhicule */
+.add-vehicle-btn {
+    background-color: white;
+    color: var(--primary);
+    border: 1px dashed var(--primary);
+    padding: 12px 20px;
+    width: 100%;
+    margin-top: 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.add-vehicle-btn:hover {
+    background-color: rgba(52, 152, 219, 0.1);
+}
+
+.add-vehicle-btn i {
+    font-size: 18px;
+}
+
+/* Validation des champs */
+.field-valid {
+    border-color: var(--success) !important;
+}
+
+.field-error {
+    border-color: var(--error) !important;
+}
+
+.error-message {
+    color: var(--error);
+    font-size: 13px;
+    margin-top: 5px;
+    display: block;
+}
+
+/* Animation de la section active */
+.form-section.active {
+    background-color: rgba(52, 152, 219, 0.05);
+    box-shadow: 0 0 0 1px rgba(52, 152, 219, 0.2);
+}
+
+/* Indicateur de progression */
+.progress-container {
+    padding: 0 40px;
+    margin-bottom: 20px;
+}
+
+.progress-bar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.progress-bar::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--border);
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+.progress-step {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: white;
+    border: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    position: relative;
+    z-index: 2;
+    transition: var(--transition);
+}
+
+.progress-step.active {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: white;
+}
+
+.progress-step.completed {
+    background-color: var(--success);
+    border-color: var(--success);
+    color: white;
+}
+
+/* Animation pour les messages de validation */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.shake {
+    animation: shake 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+/* Styles pour mobiles */
+@media (max-width: 768px) {
+    .container {
+    margin: 20px;
+    width: auto;
+    }
+    
+    .form-section {
+    padding: 20px;
+    }
+    
+    .form-footer {
+    padding: 20px;
+    }
+    
+    .btn-submit {
+    width: 100%;
+    }
+}
+
+/* Style spécifique pour l'image de profil */
+.profile-upload {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 20px;
+}
+
+.profile-upload label {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px dashed var(--primary);
+    overflow: hidden;
+    cursor: pointer;
+    transition: var(--transition);
+    background-color: var(--light-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-upload:hover label {
+    border-color: var(--secondary);
+}
+
+.profile-upload img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-upload .upload-icon {
+    font-size: 40px;
+    color: var(--primary);
+}
+
+.profile-upload input {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+/* Styles de gestion d'erreur pour le formulaire */
+
+/* Message d'erreur sous les champs */
+.error-message {
+color: var(--error);
+font-size: 13px;
+margin-top: 5px;
+padding-left: 22px;
+position: relative;
+display: block;
+animation: slideDown 0.3s ease forwards;
+}
+
+.error-message i {
+position: absolute;
+left: 0;
+top: 2px;
+}
+
+/* Animation pour les messages d'erreur */
+@keyframes slideDown {
+from {
+opacity: 0;
+transform: translateY(-10px);
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+
+/* Animation de secousse pour les champs avec erreur */
+@keyframes shake {
+0%, 100% { transform: translateX(0); }
+10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.shake {
+animation: shake 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+/* Bannière d'erreur globale */
+.error-banner {
+background-color: #fff3f3;
+border-left: 4px solid var(--error);
+color: var(--error);
+padding: 15px 20px;
+margin-bottom: 20px;
+border-radius: 4px;
+display: flex;
+align-items: center;
+animation: slideDown 0.3s ease forwards;
+}
+
+.error-banner i {
+font-size: 18px;
+margin-right: 10px;
+}
+
+/* Stylisation des champs en erreur */
+.field-error {
+border-color: var(--error) !important;
+box-shadow: 0 0 0 1px var(--error) !important;
+}
+
+.field-error:focus {
+box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.2) !important;
+}
+
+/* Stylisation des champs valides */
+.field-valid {
+border-color: var(--success) !important;
+}
+
+.field-valid:focus {
+box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.2) !important;
+}
+
+/* Marqueur d'erreur dans les sections */
+.form-section.section-with-error h2::before {
+content: '⚠️';
+margin-right: 10px;
+color: var(--error);
+animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+0% { opacity: 0.6; }
+50% { opacity: 1; }
+100% { opacity: 0.6; }
+}
+
+/* Indicateur de progression avec erreur */
+.progress-step.error {
+background-color: var(--error);
+border-color: var(--error);
+color: white;
+}
+
+/* Zone d'erreur du formulaire Django */
+.errorlist {
+list-style-type: none;
+padding: 0;
+margin: 5px 0;
+color: var(--error);
+}
+
+/* Champs requis */
+label .required {
+color: var(--error);
+margin-left: 3px;
+}
+
+/* Message de serveur non disponible */
+.server-error-message {
+background-color: #fee;
+border: 1px solid var(--error);
+padding: 15px;
+margin-bottom: 20px;
+border-radius: 4px;
+text-align: center;
+}
+
+/* Tooltip d'aide pour les champs */
+.field-help {
+position: relative;
+display: inline-block;
+margin-left: 5px;
+color: var(--primary);
+cursor: help;
+}
+
+.field-help i {
+font-size: 16px;
+}
+
+.field-help:hover .tooltip {
+visibility: visible;
+opacity: 1;
+}
+
+.field-help .tooltip {
+visibility: hidden;
+width: 200px;
+background-color: #333;
+color: white;
+text-align: center;
+border-radius: 6px;
+padding: 10px;
+position: absolute;
+z-index: 1;
+bottom: 125%;
+left: 50%;
+margin-left: -100px;
+opacity: 0;
+transition: opacity 0.3s;
+font-size: 13px;
+line-height: 1.4;
+}
+
+.field-help .tooltip::after {
+content: "";
+position: absolute;
+top: 100%;
+left: 50%;
+margin-left: -5px;
+border-width: 5px;
+border-style: solid;
+border-color: #333 transparent transparent transparent;
+}
+
+/* Style pour la saisie incomplète */
+.form-section .incomplete-section {
+position: absolute;
+top: 20px;
+right: 20px;
+background-color: #f1c40f;
+color: white;
+font-size: 12px;
+padding: 3px 8px;
+border-radius: 20px;
+}
+
+/* Style pour les erreurs de validation serveur */
+.server-validation-error {
+background-color: #fff3f3;
+border-left: 4px solid var(--error);
+padding: 15px;
+margin-bottom: 20px;
+border-radius: 4px;
+}
+
+.server-validation-error h3 {
+margin-top: 0;
+color: var(--error);
+}
+
+.server-validation-error ul {
+margin-bottom: 0;
+padding-left: 20px;
+}
+
+/* Style pour le mode erreur / correction */
+.correction-mode {
+background-color: #fff9e6;
+padding: 15px;
+margin-bottom: 20px;
+border-radius: 4px;
+border-left: 4px solid #f1c40f;
+}
+
+.correction-mode h3 {
+margin-top: 0;
+color: #d35400;
+}
+
+.correction-mode ul {
+margin-bottom: 0;
+}
+
+/* Animation pulsante pour les champs obligatoires non remplis */
+@keyframes pulseBackgroundColor {
+0% { background-color: rgba(231, 76, 60, 0.1); }
+50% { background-color: rgba(231, 76, 60, 0.2); }
+100% { background-color: rgba(231, 76, 60, 0.1); }
+}
+
+.required-empty {
+animation: pulseBackgroundColor 2s infinite;
+border-color: var(--error) !important;
+}

@@ -1,0 +1,76 @@
+<div class="form-container">
+    <!-- Decorative circles -->
+    <div class="circle circle-1"></div>
+    <div class="circle circle-2"></div>
+  
+    <h1>Connexion</h1>
+  
+    <!-- Messages conditionnels -->
+    <div *ngIf="messages.length > 0" class="messages-container">
+      <div
+        *ngFor="let message of messages"
+        [ngClass]="message.type === 'error' ? 'error-message' : 'success-message'"
+      >
+        <svg *ngIf="message.type === 'error'" class="error-icon" width="16" height="16">
+          <path d="..." stroke="#F44336" stroke-width="2" />
+        </svg>
+        <svg *ngIf="message.type === 'success'" class="success-icon" width="16" height="16">
+          <path d="..." stroke="#4CAF50" stroke-width="2" />
+        </svg>
+        {{ message.text }}
+      </div>
+    </div>
+  
+    <!-- Error message -->
+    <div class="error-message" *ngIf="loginError">
+      <svg class="error-icon" width="16" height="16">
+        <path d="..." stroke="#F44336" stroke-width="2" />
+      </svg>
+      Identifiant ou mot de passe incorrect
+    </div>
+  
+    <!-- Formulaire -->
+    <form (submit)="onSubmit($event)">
+      <div class="input-effect">
+        <input
+          type="email"
+          name="email"
+          placeholder="Votre adresse email"
+          [(ngModel)]="email"
+          #emailInput="ngModel"
+          required
+        />
+        <span class="focus-border"></span>
+        <p class="error email-error" *ngIf="emailError">Veuillez entrer une adresse email valide</p>
+      </div>
+  
+      <div class="input-effect">
+        <input
+          type="password"
+          name="password"
+          placeholder="Votre mot de passe"
+          [(ngModel)]="password"
+          #passwordInput="ngModel"
+          required
+        />
+        <span class="focus-border"></span>
+        <span class="password-toggle" (click)="togglePasswordVisibility()"></span>
+        <p class="error password-error" *ngIf="passwordError">Veuillez entrer votre mot de passe</p>
+      </div>
+  
+      <button type="submit">Se connecter</button>
+    </form>
+  
+    <!-- Liens supplémentaires -->
+    <div class="links-container">
+      <a routerLink="/forgot-password" class="forgot-password">Mot de passe oublié ?</a>
+      <a routerLink="/" class="back-home">Retour à l'accueil</a>
+    </div>
+  
+    <!-- Inscription -->
+    <div class="register-container">
+      <p>Vous n'avez pas de compte ?</p>
+      <a routerLink="/inscription" class="register-btn">S'inscrire</a>
+    </div>
+  </div>
+  

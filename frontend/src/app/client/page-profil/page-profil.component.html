@@ -1,0 +1,134 @@
+<div class="account-container" *ngIf="client">
+    <h2>Mon compte</h2>
+    <p class="welcome-text">Bienvenue, {{ client.prenom }} !</p>
+  
+    <!-- Informations personnelles -->
+    <div class="section">
+      <h3>Informations personnelles</h3>
+      <div class="info-card">
+        <div class="info-item">
+          <span class="info-label">Nom d'utilisateur :</span>
+          <span class="info-value">{{ client.nom }}</span>
+          <span class="info-value">{{ client.prenom }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Adresse e-mail :</span>
+          <span class="info-value">{{ client.email }}</span>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Historique des rendez-vous -->
+    <div class="section">
+      <h3>Historique des rendez-vous</h3>
+      <div class="card-list" *ngIf="(rendezVousList ?? []).length > 0; else noAppointments">
+        <div class="list-card appointment-card" *ngFor="let rendezVous of rendezVousList">
+          <div class="appointment-date">{{ rendezVous.date }}</div>
+          <div class="appointment-service">{{ rendezVous.service }}</div>
+          <span
+            class="appointment-status"
+            [ngClass]="{
+              'status-confirmed': rendezVous.etat === 'confirmé',
+              'status-pending': rendezVous.etat === 'en attente',
+              'status-cancelled': rendezVous.etat === 'annulé'
+            }"
+          >
+            {{ rendezVous.etat }}
+          </span>
+        </div>
+      </div>
+      <ng-template #noAppointments>
+        <div class="empty-message">Aucun rendez-vous trouvé.</div>
+      </ng-template>
+    </div>
+  
+    <!-- Mes véhicules -->
+    <div class="section">
+      <h3>Mes véhicules</h3>
+      <div class="card-list" *ngIf="(vehiculeList ?? []).length > 0; else noVehicles">
+        <div class="list-card vehicle-card" *ngFor="let vehicule of vehiculeList">
+          <div>
+            <span class="vehicle-icon">🚗</span> {{ vehicule.marque }} {{ vehicule.modele }}
+          </div>
+          <div>Immatriculation : {{ vehicule.numero_immatriculation }}</div>
+          <div class="vehicle-actions">
+            <button
+              class="btn btn-edit edit-vehicle"
+              (click)="editVehicle(vehicule)"
+            >
+              Modifier
+            </button>
+            <button
+              class="btn btn-delete delete-vehicle"
+              (click)="deleteVehicle(vehicule.id)"
+            >
+              Supprimer
+            </button>
+          </div>
+        </div>
+      </div>
+      <ng-template #noVehicles>
+        <div class="empty-message" id="emptyVehicleMessage">Aucun véhicule trouvé.</div>
+      </ng-template>
+  
+      <!-- Formulaire d'ajout de véhicule -->
+      <div *ngIf="showAddVehicleForm">
+        <h4 class="form-title">Ajouter un nouveau véhicule</h4>
+        <form (submit)="addVehicle($event)">
+          <div class="form-group">
+            <label for="marque">Marque</label>
+            <input
+              type="text"
+              id="marque"
+              [(ngModel)]="newVehicle.marque"
+              placeholder="Ex: Renault, Peugeot, Citroën..."
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="modele">Modèle</label>
+            <input
+              type="text"
+              id="modele"
+              [(ngModel)]="newVehicle.modele"
+              placeholder="Ex: Clio, 308, C3..."
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="annee">Année</label>
+            <input
+              type="number"
+              id="annee"
+              [(ngModel)]="newVehicle.annee"
+              placeholder="Ex: 2020"
+              min="1900"
+              max="2025"
+            />
+          </div>
+          <div class="form-group">
+            <label for="immatriculation">Numéro d'immatriculation</label>
+            <input
+              type="text"
+              id="immatriculation"
+              [(ngModel)]="newVehicle.numero_immatriculation"
+              placeholder="Ex: AB-123-CD"
+              required
+            />
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-success">Enregistrer</button>
+            <button type="button" (click)="cancelAddVehicle()" class="btn btn-danger">Annuler</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  
+    <!-- Boutons d'action -->
+    <div class="buttons-container">
+      <button (click)="toggleAddVehicleForm()" class="btn btn-primary">Ajouter un véhicule</button>
+      <a routerLink="/appointments" class="btn btn-primary">Prendre rendez-vous</a>
+      <a routerLink="/logout" class="btn btn-secondary">Se déconnecter</a>
+    </div>
+  </div>
+  
